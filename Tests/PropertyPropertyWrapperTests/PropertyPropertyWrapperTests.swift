@@ -17,6 +17,7 @@ final class PropertyPropertyWrapperTests: XCTestCase {
         let accountRepository = AccountRepository()
         let isProValue = accountRepository.isPro
 
+        // error: Value of type 'AccountRepository' has no member '$isPro'
         accountRepository.$isPro
 
     }
