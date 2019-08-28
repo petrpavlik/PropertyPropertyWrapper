@@ -1,12 +1,24 @@
 import XCTest
 @testable import PropertyPropertyWrapper
+import ReactiveSwift
+
+class AccountRepository {
+
+    @Propertyx var isPro: Bool = false
+
+    func toggleIsPro() {
+        isPro = !isPro
+    }
+}
 
 final class PropertyPropertyWrapperTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(PropertyPropertyWrapper().text, "Hello, World!")
+
+        let accountRepository = AccountRepository()
+        let isProValue = accountRepository.isPro
+
+        accountRepository.$isPro
+
     }
 
     static var allTests = [
