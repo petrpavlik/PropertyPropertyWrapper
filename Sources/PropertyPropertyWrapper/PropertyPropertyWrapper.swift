@@ -1,10 +1,16 @@
 import ReactiveSwift
 
 @propertyWrapper
-public struct Propertyx<Value> {
+public struct Observable<Value> {
 
     private let mutableProperty: ReactiveSwift.MutableProperty<Value>
     public let property: ReactiveSwift.Property<Value>
+    public var signal: Signal<Value, Never> {
+        return property.signal
+    }
+    public var producer: SignalProducer<Value, Never> {
+        return property.producer
+    }
 
     public var wrappedValue: Value {
         set {
@@ -13,6 +19,11 @@ public struct Propertyx<Value> {
         get {
             return mutableProperty.value
         }
+    }
+
+    public var projectedValue: Self {
+      get { self }
+      set { self = newValue }
     }
 
     public init(wrappedValue: Value) {
